@@ -1,3 +1,4 @@
+from django.core.validators import MaxValueValidator
 from django.db import models
 
 from common.mixins import CreatedAtMixin
@@ -11,7 +12,7 @@ class Hero(CreatedAtMixin):
         max_length=20,
         choices=HeroClassChoices
     )
-    level = models.PositiveIntegerField()
+    level = models.PositiveIntegerField(validators=[MaxValueValidator(100)])
     guild = models.ForeignKey(
         Guild,
         on_delete=models.SET_NULL,

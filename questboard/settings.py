@@ -28,7 +28,12 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
-# Application definition
+PROJECT_APPS = [
+    'common',
+    'heroes',
+    'guilds',
+    'quests',
+]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -37,7 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-]
+] + PROJECT_APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -78,7 +83,7 @@ DATABASES = {
         "ENGINE": "django.db.backends.postgresql",
         "NAME": "questboard",
         "USER": "postgres",
-        "PASSWORD": "123456",
+        "PASSWORD": "postgres",
         "HOST": "127.0.0.1",
         "PORT": "5432",
     }

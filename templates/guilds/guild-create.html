@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2 class="text-white mb-4">Create Guild</h2>
+
+<form method="post" class="card p-4 shadow">
+    {% csrf_token %}
+
+    {% for field in form %}
+        <div class="mb-3">
+
+            {% if field.name == 'is_open' %}
+                <div class="form-check">
+                    {{ field }}
+                    <label class="form-check-label" for="{{ field.id_for_label }}">
+                        {{ field.label }}
+                    </label>
+                </div>
+            {% else %}
+                <label class="form-label" for="{{ field.id_for_label }}">
+                    {{ field.label }}
+                </label>
+                {{ field }}
+            {% endif %}
+
+            {% for error in field.errors %}
+                <div class="text-danger small">{{ error }}</div>
+            {% endfor %}
+
+        </div>
+    {% endfor %}
+
+    <button class="btn btn-success">Create Guild</button>
+</form>
+
+{% endblock %}

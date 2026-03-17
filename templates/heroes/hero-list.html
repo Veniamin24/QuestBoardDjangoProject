@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2 class="text-white mb-4">All Heroes</h2>
+
+<div class="row g-4">
+
+    {% for hero in heroes %}
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm">
+
+                <div class="card-body text-center">
+                    <h4 class="card-title">{{ hero.name }}</h4>
+
+                    <p class="card-text">
+                        Class: {{ hero.hero_class }} <br>
+                        Level: {{ hero.level }}
+                    </p>
+
+                    <a href="{% url 'hero-details' hero.pk %}" class="btn btn-primary">
+                        Details
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    {% empty %}
+        <p class="text-white">No heroes yet.</p>
+    {% endfor %}
+
+</div>
+
+{% endblock %}

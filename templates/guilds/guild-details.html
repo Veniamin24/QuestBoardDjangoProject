@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="card shadow p-4">
+    <h2 class="mb-3">{{ guild.name }}</h2>
+
+    <p><strong>Country:</strong> {{ guild.country }}</p>
+    <p><strong>Level:</strong> {{ guild.level }}</p>
+    <p><strong>Members:</strong> {{ guild.members }}</p>
+    <p><strong>Description:</strong> {{ guild.description|default:"No description." }}</p>
+    <p><strong>Open for members:</strong> {{ guild.is_open|yesno:"Yes,No" }}</p>
+
+    <div class="mt-3">
+        <a href="{% url 'guild-edit' guild.pk %}" class="btn btn-warning me-2">
+            Edit
+        </a>
+        <a href="{% url 'guild-delete' guild.pk %}" class="btn btn-danger">
+            Delete
+        </a>
+    </div>
+</div>
+
+{% endblock %}

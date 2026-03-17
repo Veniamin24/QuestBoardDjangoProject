@@ -4,7 +4,13 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 from heroes.forms import HeroCreateForm, HeroEditForm, HeroDeleteForm
 from heroes.models import Hero
 
+class TopHeroesView(ListView):
+    model = Hero
+    template_name = 'heroes/top-heroes.html'
+    context_object_name = 'heroes'
 
+    def get_queryset(self):
+        return Hero.objects.order_by('-level')[:3]
 class HeroListView(ListView):
     model = Hero
     template_name = 'heroes/hero-list.html'

@@ -5,11 +5,12 @@ from quests.views import (
     QuestDetailView,
     QuestCreateView,
     QuestEditView,
-    QuestDeleteView,
+    QuestDeleteView, LatestQuestsView,
 )
 
 urlpatterns = [
     path('', QuestListView.as_view(), name='quest-list'),
+    path('latest/', LatestQuestsView.as_view(), name='latest-quests'),
     path('create/', QuestCreateView.as_view(), name='quest-create'),
     path('<slug:slug>/', QuestDetailView.as_view(), name='quest-details'),
     path('<slug:slug>/edit/', QuestEditView.as_view(), name='quest-edit'),

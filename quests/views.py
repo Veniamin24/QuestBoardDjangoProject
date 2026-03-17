@@ -4,7 +4,13 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 from quests.forms import QuestCreateForm, QuestEditForm, QuestDeleteForm
 from quests.models import Quest
 
+class LatestQuestsView(ListView):
+    model = Quest
+    template_name = 'quests/latest-quests.html'
+    context_object_name = 'quests'
 
+    def get_queryset(self):
+        return Quest.objects.order_by('-created_at')[:3]
 class QuestListView(ListView):
     model = Quest
     template_name = 'quests/quest-list.html'

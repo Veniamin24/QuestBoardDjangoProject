@@ -11,3 +11,4 @@ urlpatterns = [
     path('guilds/', include('guilds.urls')),
     path('quests/', include('quests.urls')),
 ]
+handler404 = 'questboard.views.custom_404'

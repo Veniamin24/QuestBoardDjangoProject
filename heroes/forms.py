@@ -29,10 +29,15 @@ class HeroBaseForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
 
         self.fields["guild"].queryset = Guild.objects.order_by("name")
-
+        self.fields["guild"].empty_label = "No guild."
         self.fields["name"].error_messages["required"] = "You can't be unnamed."
         self.fields["level"].error_messages["invalid"] = "Hero level must be a positive number."
 
+        for field_name, field in self.fields.items():
+            if field_name == "is_available_for_quests":
+                field.widget.attrs['class'] = 'form-check-input'
+            else:
+                field.widget.attrs['class'] = 'form-control'
 
 class HeroCreateForm(HeroBaseForm):
     pass

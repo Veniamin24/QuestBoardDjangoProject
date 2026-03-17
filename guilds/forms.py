@@ -1,7 +1,5 @@
 from django import forms
-
 from guilds.models import Guild
-
 
 class GuildBaseForm(forms.ModelForm):
     class Meta:
@@ -15,6 +13,15 @@ class GuildBaseForm(forms.ModelForm):
             'description': 'Description',
             'is_open': 'Available to join',
         }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        for name, field in self.fields.items():
+            if name == 'is_open':
+                field.widget.attrs['class'] = 'form-check-input'
+            else:
+                field.widget.attrs['class'] = 'form-control'
 
 class GuildCreateForm(GuildBaseForm):
     pass

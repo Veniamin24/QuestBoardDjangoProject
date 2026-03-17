@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2 class="text-white mb-4">Latest Quests</h2>
+
+<div class="row g-4">
+    {% for quest in quests %}
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body text-center">
+                    <h4 class="card-title">{{ quest.title }}</h4>
+                    <p class="mb-1"><strong>Difficulty:</strong> {{ quest.difficulty }}</p>
+                    <p class="mb-1"><strong>Gold:</strong> {{ quest.reward_gold }}</p>
+                    <p class="mb-1"><strong>XP:</strong> {{ quest.reward_xp }}</p>
+
+                    <a href="{% url 'quest-details' quest.slug %}" class="btn btn-primary">
+                        Details
+                    </a>
+                </div>
+            </div>
+        </div>
+    {% empty %}
+        <p class="text-white">No quests yet.</p>
+    {% endfor %}
+</div>
+
+{% endblock %}

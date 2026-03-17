@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2 class="text-white mb-4">Edit Hero</h2>
+
+<form method="post" class="card p-4 shadow">
+    {% csrf_token %}
+
+    {{ form.as_p }}
+
+    <button class="btn btn-warning">Save</button>
+</form>
+
+{% endblock %}

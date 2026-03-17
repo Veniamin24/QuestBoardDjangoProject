@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2 class="text-white mb-4">Create Hero</h2>
+
+<form method="post" class="card p-4 shadow">
+    {% csrf_token %}
+
+    <div class="mb-3">
+        <label class="form-label">Name</label>
+        {{ form.name }}
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Class</label>
+        {{ form.hero_class }}
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Level</label>
+        {{ form.level }}
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Guild</label>
+        {{ form.guild }}
+    </div>
+
+    <div class="form-check mb-3">
+        {{ form.is_available_for_quests }}
+        <label class="form-check-label">Available for quests</label>
+    </div>
+
+    <button class="btn btn-success">Create</button>
+
+</form>
+
+{% endblock %}

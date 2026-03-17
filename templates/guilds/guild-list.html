@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2 class="text-white mb-4">All Guilds</h2>
+
+<div class="row g-4">
+    {% for guild in guilds %}
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body text-center">
+                    <h4 class="card-title">{{ guild.name }}</h4>
+
+                    <p><strong>Country:</strong> {{ guild.country }}</p>
+                    <p><strong>Level:</strong> {{ guild.level }}</p>
+                    <p><strong>Members:</strong> {{ guild.members }}</p>
+
+                    <a href="{% url 'guild-details' guild.pk %}" class="btn btn-primary">
+                        Details
+                    </a>
+                </div>
+            </div>
+        </div>
+    {% empty %}
+        <p class="text-white">No guilds yet.</p>
+    {% endfor %}
+</div>
+
+{% endblock %}
